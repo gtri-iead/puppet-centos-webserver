@@ -1,0 +1,7 @@
+<?php 
+# THIS FILE IS MANAGED BY PUPPET - CHANGES WILL BE OVERRIDEN
+
+# Prevent new user registrations except by sysops
+$wgGroupPermissions['*']['createaccount'] = false;
+# Require email verify to edit
+$wgEmailAuthentication = false;

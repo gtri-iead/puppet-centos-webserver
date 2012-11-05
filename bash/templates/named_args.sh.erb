@@ -1,0 +1,76 @@
+#################################
+# NAMED ARGUMENTS SNIPPET START #
+#################################
+# The following snippet adds support for named command line arguments.
+# Each recognized command-line argument is automatically assigned to an all uppercase variable name with any dashes(-) converted to underscores ('_'). Ex: Value of command line argument 'input-interval', is assigned to the variable 'INPUT_INTERVAL'.
+# If any required arguments are not supplied, an error message is displayed, the help is shown and the script exits.
+
+#################################
+# Script arguments              #
+#################################
+REQUIRED_ARGS=(<% if requiredArgs.respond_to?('each') %><% requiredArgs.each do |arg| %><%= "\"" %><%= arg %><%= "\" " %><% end %><% else %><%= "\"" %><%= requiredArgs %><%= "\"" %><% end %>)
+OPTIONAL_ARGS=(<% if optionalArgs.respond_to?('each') %><% optionalArgs.each do |arg| %><%= "\"" %><%= arg %><%= "\" " %><% end %><% else %><%= "\"" %><%= optionalArgs %><%= "\"" %><% end %> "debug" "help")
+
+# Set some required globals
+TR=/usr/bin/tr
+DEBUG=0
+HELP=0
+
+# Some helper functions
+function showHelp() {
+echo "<%= help %>"
+exit 1
+}
+
+function commandLineToVarName() {
+  # Convert to uppercase and convert dashes to underscores
+ echo $(echo $1 | $TR - _) | $TR [:lower:] [:upper:]
+}
+
+function setVar {
+  EVAL="$1=$2"
+  eval $EVAL
+  if [ $DEBUG -eq 1 ]; then
+    echo $EVAL
+  fi
+}
+
+# Build regex
+ARGS=( ${REQUIRED_ARGS[@]} ${OPTIONAL_ARGS[@]} )
+ARGS_REGEX=$(printf "|%s" ${ARGS[@]})
+ARGS_REGEX=${ARGS_REGEX:1}
+NAMED_VAL_REGEX=$(printf "(--|-)(%s)=(.*)" $ARGS_REGEX)
+NAMED_SW_REGEX=$(printf "(--|-)(%s)" $ARGS_REGEX)
+# Transform named arguments into bash variables
+for arg in $*
+do
+  if [[ $arg =~ $NAMED_VAL_REGEX ]]; then
+    VARNAME=$(commandLineToVarName ${BASH_REMATCH[2]})
+    setVar $VARNAME ${BASH_REMATCH[3]}
+  else
+    if [[ $arg =~ $NAMED_SW_REGEX ]]; then
+      VARNAME=$(commandLineToVarName ${BASH_REMATCH[2]})
+      setVar $VARNAME 1
+    else
+      echo "Unrecognized parameter: $arg" >&2
+    fi
+  fi
+done
+# Check for help request
+if [[ $HELP -eq 1 ]]; then
+  showHelp
+fi
+
+# Check for required args
+for arg in ${REQUIRED_ARGS[@]}
+do
+  VARNAME=$(commandLineToVarName $arg)
+  if [[ ! ${!VARNAME} && ${!VARNAME-_} ]]; then
+    echo "Missing required parameter: $arg" >&2
+    showHelp
+  fi
+done
+
+#################################
+# NAMED ARGUMENTS SNIPPET END   #
+#################################

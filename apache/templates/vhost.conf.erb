@@ -1,0 +1,17 @@
+<VirtualHost *:<%= port %>>
+  ServerAdmin <%= adminEmail %>
+  ServerName  <%= serverName %>
+<%= serverAliases %>
+  DocumentRoot <%= docrootpath %>
+<% if useCgiBin %>
+  ScriptAlias /cgi-bin/ <%= cgibinpath %>
+  <Location /cgi-bin>
+    Options +ExecCGI
+  </Location>
+<% end %>
+<% if !useDefaultLogs %>
+  ErrorLog  <%= logpath %>/error_log
+  CustomLog <%= logpath %>/access_log combined
+<% end %>
+  include <%= confpath %>/*.conf
+</VirtualHost>

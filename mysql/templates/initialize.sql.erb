@@ -1,0 +1,11 @@
+USE mysql;
+-- Remove remote root user
+DROP USER 'root'@'<%= hostname %>';
+-- Set root password
+UPDATE user SET password = password('<%= rootUserPassword %>') WHERE user='root';
+-- Remove anonymous users
+DELETE FROM user WHERE user = '';
+-- Remove test database
+DROP DATABASE test;
+-- Make it so
+FLUSH PRIVILEGES;

@@ -1,0 +1,27 @@
+\+ .*service iptables status
+Table: filter\s*
+Chain INPUT \(policy ACCEPT\)\s*
+num  target     prot opt source               destination\s*
+1    RH-Firewall-1-INPUT  all  --  0\.0\.0\.0/0            0\.0\.0\.0/0\s*
+\s*
+Chain FORWARD \(policy ACCEPT\)\s*
+num  target     prot opt source               destination\s*
+1    RH-Firewall-1-INPUT  all  --  0\.0\.0\.0/0            0\.0\.0\.0/0\s*
+\s*
+Chain OUTPUT \(policy ACCEPT\)\s*
+num  target     prot opt source               destination\s*
+\s*
+Chain RH-Firewall-1-INPUT \(2 references\)\s*
+num  target     prot opt source               destination\s*
+1    ACCEPT     all  --  0\.0\.0\.0/0            0\.0\.0\.0/0\s*
+2    ACCEPT     icmp --  0\.0\.0\.0/0            0\.0\.0\.0/0           icmp type 255\s*
+3    ACCEPT     esp  --  0\.0\.0\.0/0            0\.0\.0\.0/0\s*
+4    ACCEPT     ah   --  0\.0\.0\.0/0            0\.0\.0\.0/0\s*
+5    ACCEPT     udp  --  0\.0\.0\.0/0            224\.0\.0\.251         udp dpt:5353\s*
+6    ACCEPT     udp  --  0\.0\.0\.0/0            0\.0\.0\.0/0           udp dpt:631\s*
+7    ACCEPT     tcp  --  0\.0\.0\.0/0            0\.0\.0\.0/0           tcp dpt:631\s*
+8    ACCEPT     all  --  0\.0\.0\.0/0            0\.0\.0\.0/0           state RELATED,ESTABLISHED\s*
+9    ACCEPT     tcp  --  0\.0\.0\.0/0            0\.0\.0\.0/0           state NEW tcp dpt:22\s*
+10   ACCEPT     tcp  --  0\.0\.0\.0/0            0\.0\.0\.0/0           state NEW tcp dpt:80\s*
+11   ACCEPT     tcp  --  0\.0\.0\.0/0            0\.0\.0\.0/0           state NEW tcp dpt:443\s*
+12   REJECT     all  --  0\.0\.0\.0/0            0\.0\.0\.0/0           reject-with icmp-host-prohibited\s*

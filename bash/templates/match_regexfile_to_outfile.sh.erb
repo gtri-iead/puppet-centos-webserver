@@ -1,0 +1,15 @@
+#!/bin/bash
+#set -x
+
+# This script is intended to only be called from the puppet module bash
+
+# PCREGREP and SED environment variables should be set from puppet, however these are provided for command line testing
+if [ -z $SED ]; then SED="/bin/sed"; fi
+if [ -z $PCREGREP ]; then PCREGREP="/usr/bin/pcregrep"; fi
+
+# Explanation:
+#  1. sed ':a;N;$!ba;s/\n/\\n/g' : translates actual newlines in regex file into literal "\n" strings to form one very long regex. Doing this keeps pcregrep from interpeting newlines as pattern delimiters. Otherwise pcregrep would assume there are multiple patterns to search for in the file instead of trying to match one big pattern.
+# Call pcregrep in multi line mode, returning 0 if entire regex is found, 1 otherwise
+
+PATTERN=$($SED ':a;N;$!ba;s/\n/\\n/g' $1)
+$PCREGREP -M --regex "$PATTERN" $2

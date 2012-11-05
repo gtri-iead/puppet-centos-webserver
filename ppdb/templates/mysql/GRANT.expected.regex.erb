@@ -1,0 +1,6 @@
+--------------
+GRANT <%= privilege %> ON <% if targetType != 'DATABASE' %><%= targetType %><% end %> <%= target %><% if targetType == 'DATABASE' and !target.include?('.') %><%= ".*" %><% end %> TO <%= grantTo %>
+--------------
+
+Query OK, 0 rows affected \([0-9].[0-9][0-9] sec\)
+

@@ -1,0 +1,1 @@
+GRANT <%= privilege %> ON <% if targetType != 'DATABASE' %><%= targetType %><% end %> <%= target %><% if targetType == 'DATABASE' and !target.include?('.') %><%= ".*" %><% end %> TO <%= grantTo %>;

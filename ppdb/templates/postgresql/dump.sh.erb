@@ -1,0 +1,2 @@
+PGPASSFILE=<%= pwdfile %>
+<%= _PG_DUMP %> $OPTIONS <% if host != "default" then %>-h<%= host %><% end %> <% if port != "default" then %>-p<%= port %><% end %> <% if database != "default" then %><%= database %><% else %><%= "$DATABASE" %><% end %>

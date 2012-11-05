@@ -1,0 +1,1 @@
+GRANT <%= privilege %> ON <%= targetType %> "<% if targetType == 'DATABASE' %><%= pg_database %><% else %><%= target %><% end %>" TO "<%= grantTo %>";

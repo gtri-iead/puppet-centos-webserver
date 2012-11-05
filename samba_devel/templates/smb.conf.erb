@@ -1,0 +1,17 @@
+[global]
+workgroup = <%= smbWorkGroup %>
+netbios name = <%= smbServerName %>
+security = SHARE
+load printers = No
+default service = global
+path = /www
+available = No
+encrypt passwords = yes
+[www]
+admin users = smbwww
+path = /var/www
+force user = root
+valid users = smbwww
+public = yes
+available = yes
+writeable = yes

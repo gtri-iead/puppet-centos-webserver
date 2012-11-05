@@ -1,0 +1,7 @@
+<?php 
+# THIS FILE IS MANAGED BY PUPPET - CHANGES WILL BE OVERRIDEN
+
+# Disable reading by anonymous users
+$wgGroupPermissions['*']['read'] = false;
+# But allow them to read e.g., these pages:
+$wgWhitelistRead =  array ( <% whiteListRead.each do |page| -%>"<%= page %>",<% end -%>);

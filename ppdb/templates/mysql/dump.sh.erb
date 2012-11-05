@@ -1,0 +1,1 @@
+<%= _MYSQLDUMP %> --defaults-extra-file=<%= pwdfile %> $OPTIONS <% if host != "default" then %>-h<%= host %><% end %> <% if port != "default" then %>-P<%= port %><% end %> <% if database != "default" then %><%= database %><% else %><%= "$DATABASE" %><% end %>

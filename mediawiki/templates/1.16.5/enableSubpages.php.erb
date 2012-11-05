@@ -1,0 +1,5 @@
+<?php
+# THIS FILE IS MANAGED BY PUPPET - CHANGES WILL BE OVERRIDEN
+
+# Enable subpages
+<% namespacesWithSubpages.each do |namespace| -%>$wgNamespacesWithSubpages[<%= namespace %>] = true;<% end -%>

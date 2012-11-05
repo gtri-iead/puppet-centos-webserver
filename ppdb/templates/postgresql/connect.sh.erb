@@ -1,0 +1,8 @@
+PGPASSFILE=<%= pwdfile %>
+if [[ ! ${!ECHO} && ${!ECHO-_} ]]; then ECHO=1; fi
+if [[ $ECHO -eq 0 ]]; then
+  ECHO_OPTION=""
+else
+  ECHO_OPTION=" -e"
+fi
+<%= _PSQL %>$ECHO_OPTION <% if host != "default" then %>-h<%= host %><% end %> <% if port != "default" then %>-p<%= port %><% end %> <% if database != "default" then %><%= database %><% else %><%= "postgres" %><% end %>

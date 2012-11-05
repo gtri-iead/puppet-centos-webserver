@@ -1,0 +1,7 @@
+if [[ ! ${!ECHO} && ${!ECHO-_} ]]; then ECHO=1; fi
+if [[ $ECHO -eq 0 ]]; then
+  ECHO_OPTION=""
+else
+  ECHO_OPTION=" -vvv"
+fi
+<%= _MYSQL %> --defaults-extra-file=<%= pwdfile %>$ECHO_OPTION <% if host != "default" then %>-h<%= host %><% end %> <% if port != "default" then %>-P<%= port %><% end %> <% if database != "default" then %><%= database %><% end %>
