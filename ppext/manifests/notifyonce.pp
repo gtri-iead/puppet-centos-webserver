@@ -1,18 +1,25 @@
 /*
- ppext::notifyonce
+    Copyright 2012 Georgia Tech Research Institute
 
- Used to create a notify signal that can be subscribed to that occurs exactly once no matter how many times the manifest is applied. This is accomplished by placing a flag file with extension .notifyonce in the extpath for the module.
+    Author: Lance Gatlin [lance.gatlin@gtri.gatech.edu]
+	
+    This file is part of puppet-centos-webserver.
 
-  Usage:
-    # Declare module info (see ppext::module.pp)
-    $modinf = { ... }
-    
-    ppext::notifyonce { 'mymodule::notifymeonce' : modinf => $modinf }
-    ~>
-    exec { 'dothisonce' :
-      command => '...',
-    }
+    puppet-centos-webserver is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    puppet-centos-webserver is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with puppet-centos-webserver. If not, see <http://www.gnu.org/licenses/>.
+
 */
+
 define ppext::notifyonce(
   $modinf /* Module info (see ppext::module.pp) */
 ) {

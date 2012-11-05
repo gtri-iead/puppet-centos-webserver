@@ -1,21 +1,25 @@
 /*
-  bash::file
-    Creates a shell bash in a modules etc directory:
-      *command may be an array
-      *echo of commands can be enabled/disabled
-      *can set path or environment variables (either can be arrays)
-      *can set owner and mode of bash file
-      
-  Usage:
-    
-    bash::file { '/home/someuser/doit.sh' :
-      command => [ 'command1','command2' ],
-      envpath => [ '/bin','/bin/usr' ],
-      environment => [ 'SOME=SETTING', 'ANOTHER=SETTING' ],
-      owner => auser,
-      mode => 700,
-    }
+    Copyright 2012 Georgia Tech Research Institute
+
+    Author: Lance Gatlin [lance.gatlin@gtri.gatech.edu]
+	
+    This file is part of puppet-centos-webserver.
+
+    puppet-centos-webserver is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    puppet-centos-webserver is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with puppet-centos-webserver. If not, see <http://www.gnu.org/licenses/>.
+
 */
+
 define bash::file(
   $command, /* Array of commands or single command. Required. */
   $environment = undef, /* Array of environment variable assignments */

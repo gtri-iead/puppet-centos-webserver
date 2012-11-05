@@ -1,34 +1,25 @@
 /*
-  ppext::bashfile
-    Creates a bash script in a modules etc directory:
-      *command may be an array
-      *echo of commands can be enabled/disabled
-      *can set path or environment variables (either can be arrays)
-      *can set owner and mode of bash file
-      
-  Usage:
-    # Declare module info (see ppext::module.pp)
-    $modinf => { ... }
+    Copyright 2012 Georgia Tech Research Institute
 
-    # Reference info for resource mymodule::create_root
-    # This hash allows referencing this resource's parameters inside resources
-    $r_bashfile => {
-      name => 'mymodule::create_root',
-      resname => 'create_root',
-      modinf => $modinf,
-    }
-    
-    ppext::bashfile { $r_bashfile[name] :
-      resinf => $r_bashfile,
+    Author: Lance Gatlin [lance.gatlin@gtri.gatech.edu]
+	
+    This file is part of puppet-centos-webserver.
 
-      command => [ 'command1','command2' ],
-      path => [ '/bin','/bin/usr' ],
-      environment => [ 'SOME=SETTING', 'ANOTHER=SETTING' ],
-      owner => root,
-      mode => 700,
-    }
+    puppet-centos-webserver is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-    The above will create the bash /etc/puppet/modules.etc/mymodule/create_root.sh based on the two commands (and the path and environment settings) owned and only accessible by root */
+    puppet-centos-webserver is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with puppet-centos-webserver. If not, see <http://www.gnu.org/licenses/>.
+
+*/
+
 define ppext::bashfile(
 /*  $r_bashfilename = undef, # R_Bashfileource name. Required if bashfiler_bashfile is not specified */
 /*  $modinf = undef, # Module info. Required if bashfiler_bashfile is not specified */

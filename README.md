@@ -1,3 +1,20 @@
+Copyright 2012 Georgia Tech Research Institute
+
+Author: Lance Gatlin [lance.gatlin@gtri.gatech.edu]
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	
 Puppet modules for configuring a basic single-website CentOS webserver. (apache module can be configured to support multi-websites
  webservers)
 * See wiki ([here](https://github.com/GTRI-ICL/puppet-centos-webserver/wiki/Create-a-CentOS-VirtualBox-VM)) for instructions on creating a CentOS 6.X VirtualBox VM

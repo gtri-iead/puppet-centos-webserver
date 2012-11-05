@@ -1,53 +1,25 @@
 /*
-  ppext::execbash
-    Execute a previously created ppext::bashfile
-      *output of bash is logged
-      *scans output log for error strings, fails if any found
+    Copyright 2012 Georgia Tech Research Institute
 
-      Note: for simplicity the "refresh" parameter has been disabled
-      
-  Usage:
-    $module = 'mymodule'
-    # Declare module info (see ppext::module.pp)
-    $modinf = { ...}
+    Author: Lance Gatlin [lance.gatlin@gtri.gatech.edu]
+	
+    This file is part of puppet-centos-webserver.
 
-    # "Reference" info for mymodule::does_awesome_stuff
-    $r_bashfile = {
-      name => "${module}::${resname}",
-      resname => 'does_awesome_stuff',
-      modinf => $modinf,
-    }
+    puppet-centos-webserver is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-    # Initialize the bashfile resource with the parameters
-    ppext::bashfile { $r_bashfile[name] :
-      resinf => $r_bashfile,
-      
-      command => [ 'command1', 'command2' ],
-    }
+    puppet-centos-webserver is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-    # Execute the bashfile
-    ppext::execbash { 'mymodule::do_awesome_stuff1' :
-      modinf => $modinf,
+    You should have received a copy of the GNU General Public License
+    along with puppet-centos-webserver. If not, see <http://www.gnu.org/licenses/>.
 
-      r_bashfile => $r_bashfile,
-      
-      parameters => [ 'arg1', 'arg2' ],
-
-      subscribe => Etc::Bashfile['mymodule::does_awesome_stuff'],
-      refreshonly => true,
-    }
-    
-    ppext::execbash { 'mymodule::do_awesome_stuff2' :
-      modinf => $modinf,
-
-      r_bashfile => $r_bashfile,
-      
-      parameters => [ 'arg3', 'arg4' ],
-
-      subscribe => Etc::Bashfile['mymodule::does_awesome_stuff'],
-      refreshonly => true,
-    }
 */
+
 define ppext::execbash(
   $modinf, # Module info hash. For expected keys, see ppext::module.pp 
 

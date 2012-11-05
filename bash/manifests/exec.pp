@@ -1,36 +1,25 @@
 /*
-  bash::exec
-    Execute a command (typically a bash script)
-      *output of script is logged
-      *scans output log for error regex, fails if any found
+    Copyright 2012 Georgia Tech Research Institute
 
-      Note: for simplicity the "refresh" parameter has been disabled
-      
-  Usage:
+    Author: Lance Gatlin [lance.gatlin@gtri.gatech.edu]
+	
+    This file is part of puppet-centos-webserver.
 
-    file { '/home/someuser/doit.input' :
-    }
-    ->
-    file { '/home/someuser/doit.log' :
-    }
-    ->
-    bash::file { '/home/someuser/doit.sh' :
-      command => [ 'command1','command2' ],
-      envpath => [ '/bin','/bin/usr' ],
-      environment => [ 'SOME=SETTING', 'ANOTHER=SETTING' ],
-      owner => auser,
-      mode => 700,
-    }       
-    ~>
-    bash::exec { '/home/someuser/doit.sh' :
-      parameters => [ 'arg1', 'arg2'],
-      infile => '/home/someuser/doit.input',
-      logfile => '/home/someuser/doit.log',
-      
-      refreshonly => true,
-    }
+    puppet-centos-webserver is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    puppet-centos-webserver is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with puppet-centos-webserver. If not, see <http://www.gnu.org/licenses/>.
 
 */
+
 define bash::exec(
   $bashfile = $name, /* The path to the bash file. Optional, set to name if absent.  */
   $parameters = undef, /* Array of arguments to send to the script. Optional. */
