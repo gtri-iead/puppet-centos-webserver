@@ -29,7 +29,7 @@ yum install git
 * Check-out puppet modules:
 
 <code lang="text">
-git clone git://github.com/GTRI-ICL/puppet-centos-webserver.git /usr/share/puppet/modules/
+git clone https://github.com/gtri-iead/puppet-centos-webserver.git /usr/share/puppet/modules/
 </code>
 * Edit ~/site.pp to the following:
 
